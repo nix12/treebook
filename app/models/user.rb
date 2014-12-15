@@ -4,5 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  #attr_accessor :email, :password, :password_confirmation, :first_name, :last_name, :profile_name
+  has_many :statuses
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+  def full_name
+  	first_name + ' ' + last_name
+  	
+  end
 end
